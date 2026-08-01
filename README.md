@@ -1,4 +1,4 @@
-# 💳 payK Core - Real-Time Financial Transaction & Incentive Processing Engine
+#  PayK Core - Real-Time Financial Transaction & Incentive Processing Engine
 
 [![Java 17](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot 3.2.5](https://img.shields.io/badge/Spring%20Boot-3.2.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
@@ -10,15 +10,9 @@ Developed by **Karan Suthar**
 
 ---
 
-## 📌 Executive Summary
+##  System Architecture
 
-**payK Core** is an enterprise-grade financial transaction processing engine built using **Spring Boot** and **Apache Kafka**. The service listens to real-time high-throughput financial transfer streams, validates account balances, interacts with external microservices to fetch dynamic transaction incentives, and maintains an immutable audit ledger while providing low-latency REST endpoints for real-time balance queries.
-
----
-
-## 📐 System Architecture
-
-### 🔄 End-to-End Component Flow
+### End-to-End Component Flow
 
 ```mermaid
 graph TD
@@ -38,21 +32,38 @@ graph TD
     BalanceController -->|Query User| UserRepo
     UserRepo -->|Return Balance DTO| Client
 ```
+##  Executive Summary
+
+**payK Core** is an enterprise-grade financial transaction processing engine built using **Spring Boot** and **Apache Kafka**. The service listens to real-time high-throughput financial transfer streams, validates account balances, interacts with external microservices to fetch dynamic transaction incentives, and maintains an immutable audit ledger while providing low-latency REST endpoints for real-time balance queries.
+
+## 🛠️ Technology Stack & Frameworks
+
+| Category | Technology / Library | Version | Description & Purpose |
+| :--- | :--- | :--- | :--- |
+| **Language** | Java | 17 | Core backend runtime & programming language |
+| **Framework** | Spring Boot | 3.2.5 | Microservice foundation, bean container & dependency injection |
+| **Event Streaming** | Apache Kafka / Spring Kafka | 3.1.4 | High-throughput real-time message stream ingestion (`trader-updates`) |
+| **Database & Persistence** | Spring Data JPA / Hibernate | 3.2.5 | Data access layer for user accounts and transaction ledger entities |
+| **In-Memory Database** | H2 Database | 2.2.224 | Fast embedded SQL database for balance management |
+| **Web & REST Client** | Spring Web | 3.2.5 | REST Controller (`GET /balance`) & `RestTemplate` external API client |
+| **Build & Tooling** | Apache Maven | 3.8+ | Dependency management and build packaging lifecycle |
+| **Testing & Emulation** | JUnit 5, Embedded Kafka & Testcontainers | 1.19.1 | End-to-end unit, integration & embedded broker verification tests |
+
+---
+---
+
+##  Key Features & Capabilities
+
+- **Event-Driven Transaction Ingestion**: Uses Spring Kafka to continuously consume incoming financial transfer events on the `trader-updates` topic.
+-  **Atomic Ledger Processing**: Implements Spring `@Transactional` boundaries to guarantee atomic balance transfers between sender and recipient accounts.
+-  **Account & Overdraft Protection**: Validates sender/recipient account existence and ensures the sender has sufficient balance before processing transfers.
+-  **External Incentive Microservice Integration**: Integrates with an external incentive API via Spring `RestTemplate` to calculate and apply dynamic promotional bonus amounts to recipient accounts.
+-  **REST API Balance Querying**: Exposes light, low-latency REST endpoints to query real-time user balances.
+-  **Comprehensive Automated Testing**: Includes embedded Kafka integration testing (`@EmbeddedKafka`) and automated verifiers to test edge cases, error handling, and high-concurrency ingestion.
 
 ---
 
-## ✨ Key Features & Capabilities
-
-- ⚡ **Event-Driven Transaction Ingestion**: Uses Spring Kafka to continuously consume incoming financial transfer events on the `trader-updates` topic.
-- 🔒 **Atomic Ledger Processing**: Implements Spring `@Transactional` boundaries to guarantee atomic balance transfers between sender and recipient accounts.
-- 🛡️ **Account & Overdraft Protection**: Validates sender/recipient account existence and ensures the sender has sufficient balance before processing transfers.
-- 🎁 **External Incentive Microservice Integration**: Integrates with an external incentive API via Spring `RestTemplate` to calculate and apply dynamic promotional bonus amounts to recipient accounts.
-- 📊 **REST API Balance Querying**: Exposes light, low-latency REST endpoints to query real-time user balances.
-- 🧪 **Comprehensive Automated Testing**: Includes embedded Kafka integration testing (`@EmbeddedKafka`) and automated verifiers to test edge cases, error handling, and high-concurrency ingestion.
-
----
-
-## 📂 Codebase Navigation
+##  Codebase Navigation
 
 Below are direct links to the core components of the project:
 
