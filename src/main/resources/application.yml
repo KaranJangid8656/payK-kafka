@@ -1,11 +1,4 @@
-# application.yml is the main configuration file used in Spring Boot applications.
-
-# It stores settings such as:
-
-# Server port
-# Database connection details
-# Logging configuration
-# Custom application properties 
+# application.yml - Spring Boot Configuration for Midas Core
 
 server:
   port: 33400

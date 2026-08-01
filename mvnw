@@ -1,3 +1,11 @@
+# File	Purpose
+# mvnw	        Maven Wrapper script for Linux/macOS
+# mvnw.cmd	    Maven Wrapper script for Windows
+# .mvn/	        Contains wrapper configuration files
+# pom.xml	      Maven project configuration
+
+
+
 #!/bin/sh
 # ----------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one

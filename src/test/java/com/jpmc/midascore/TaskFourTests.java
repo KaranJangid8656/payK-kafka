@@ -23,6 +23,9 @@ public class TaskFourTests {
     @Autowired
     private FileLoader fileLoader;
 
+    @Autowired
+    private com.jpmc.midascore.component.DatabaseConduit databaseConduit;
+
     @Test
     void task_four_verifier() throws InterruptedException {
         userPopulator.populate();
@@ -32,6 +35,11 @@ public class TaskFourTests {
         }
         Thread.sleep(2000);
 
+        com.jpmc.midascore.entity.UserRecord wilbur = databaseConduit.getUserByName("wilbur");
+        if (wilbur != null) {
+            logger.info("WILBUR FINAL BALANCE: {}", wilbur.getBalance());
+            logger.info("WILBUR ROUNDED DOWN BALANCE: {}", (long) Math.floor(wilbur.getBalance()));
+        }
 
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");
