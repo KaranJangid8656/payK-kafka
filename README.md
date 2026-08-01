@@ -134,6 +134,3 @@ Start the Spring Boot microservice on port `33400`:
 
 ---
 
-## 👤 Author
-
-**Karan Suthar**  
